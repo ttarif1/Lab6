@@ -72,9 +72,9 @@ function createRecipeCards() {
   // Part 1 Expose - TODO
   const main = document.querySelector('main');
   for(let i = 0; i < 3; i++) {
-    let card = document.createElement('recipe-card');
-    card.data = recipeData[recipes[i]];
-    main.append(card);
+    let recipe_card = document.createElement('recipe-card');
+    recipe_card.data = recipeData[recipes[i]];
+    main.append(recipe_card);
   }
 }
 
@@ -87,16 +87,16 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
-  var button = document.querySelector('button');
-  let clicks = 0;
+  let button = document.querySelector('button');
+  let click_count = 0;
   button.addEventListener('click', function(){
     let main = document.querySelector('main');
-    if(clicks%2==0){
-      for(let i = 3; i < 6; i++){
-        let card = document.createElement('recipe-card');
-        card.data = recipeData[recipes[i]];
-        main.append(card);
     
+    if(click_count%2==0){
+      for(let i = 3; i < recipes.length; i++){
+        let recipe_card = document.createElement('recipe-card');
+        recipe_card.data = recipeData[recipes[i]];
+        main.append(recipe_card);
         button.innerHTML = "Show less";
       }
     }
@@ -105,6 +105,6 @@ function bindShowMore() {
       button.innerHTML = "Show more";
       createRecipeCards();
     }
-    clicks++;
+    click_count++;
   });
 }
