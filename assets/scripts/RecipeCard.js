@@ -101,7 +101,7 @@ class RecipeCard extends HTMLElement {
     // created in the constructor()
 
     // Part 1 Expose - TODO
-    let shadow = this.shadowRoot;
+    const shadow = this.shadowRoot;
     shadow.appendChild(card);
     shadow.appendChild(styleElem);
 
