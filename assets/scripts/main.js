@@ -5,7 +5,11 @@
 const recipes = [
   'https://introweb.tech/assets/json/ghostCookies.json',
   'https://introweb.tech/assets/json/birthdayCake.json',
-  'https://introweb.tech/assets/json/chocolateChip.json'
+  'https://introweb.tech/assets/json/chocolateChip.json',
+  'assets/recipes/strawberry-cheesecake.json',
+  'assets/recipes/knafeh.json',
+  'assets/recipes/chicken-alfredo.json'
+
 ];
 
 // Once all of the recipes that were specified above have been fetched, their
@@ -45,16 +49,16 @@ async function fetchRecipes() {
     // Part 1 Expose - TODO
     for(let i = 0; i < recipes.length; i++) {
       fetch(recipes[i])
-      .then(response => response.json())
-      .then(data => {
-        recipeData[recipes[i]] = data;
-        if(Object.keys(recipeData).length == recipes.length) {
-          resolve(true);
-        }
-      })
-      .catch((error) => { 
-        reject(false); 
-      });
+        .then(response => response.json())
+        .then(data => {
+          recipeData[recipes[i]] = data;
+          if(Object.keys(recipeData).length == recipes.length) {
+            resolve(true);
+          }
+        })
+        .catch((error) => { 
+          reject(false); 
+        });
     }
   });
 }
@@ -84,4 +88,24 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
+  var button = document.querySelector('button');
+  let clicks = 0;
+  button.addEventListener('click', function(){
+    let main = document.querySelector('main');
+    if(clicks%2==0){
+      for(let i = 3; i < 6; i++){
+        let card = document.createElement('recipe-card');
+        card.data = recipeData[recipes[i]];
+        main.append(card);
+    
+        button.innerHTML = "Show less";
+      }
+    }
+    else {
+      main.innerHTML='';
+      button.innerHTML = "Show more";
+      createRecipeCards();
+    }
+    clicks++;
+  });
 }
