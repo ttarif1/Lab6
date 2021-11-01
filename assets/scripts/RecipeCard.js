@@ -105,6 +105,9 @@ class RecipeCard extends HTMLElement {
     shadow.appendChild(card);
     shadow.appendChild(styleElem);
 
+    const title = document.createElement('p');
+    title.setAttribute('class', 'title');
+    
     const img = document.createElement('img');
     img.setAttribute('src', searchForKey(data, 'thumbnailUrl'));
     img.setAttribute('alt', searchForKey(data, 'headline'));
@@ -120,9 +123,6 @@ class RecipeCard extends HTMLElement {
     
     const reviews = document.createElement('div');
     reviews.setAttribute('class', 'rating');
-
-    const title = document.createElement('p');
-    title.setAttribute('class', 'title');
 
     const avg_rating = searchForKey(data, 'ratingValue');
     const rating = document.createElement('span');
@@ -166,8 +166,8 @@ class RecipeCard extends HTMLElement {
 
     const ingredients = document.createElement('p');
     ingredients.setAttribute('class', 'ingredients');
-    const list = createIngredientList(searchForKey(data, 'recipeIngredient'));
-    ingredients.textContent = list;
+    const ingredient_list = createIngredientList(searchForKey(data, 'recipeIngredient'));
+    ingredients.textContent = ingredient_list;
 
     const rating_cnt = document.createElement('span');
     rating_cnt.textContent = searchForKey(data, 'ratingCount');
@@ -184,7 +184,6 @@ class RecipeCard extends HTMLElement {
     card.appendChild(reviews);
     card.appendChild(time);
     card.appendChild(title);
-
   }
 }
 
